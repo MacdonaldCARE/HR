@@ -1,0 +1,11 @@
+---
+
+Type: AWS::EC2:LaunchTemplate 
+Properties:
+  LaunchTemplateData: 
+    CpuOptions:
+    ImageId: 
+    InstanceType:
+    KeyName:
+    SecurityGroups:
+  LaunchTemplateName: 
