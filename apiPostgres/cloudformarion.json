@@ -1,0 +1,18 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Description": "A template to deploy an ec2 Instance",
+  "Parameters": {
+    "ec2TypeParam": {
+      "Type": "String",
+      "Default": "t2.micro",
+      "AllowedValues": ["t2.micro", "m1.small", "m1.large"],
+      "Description": "Enter either t2.micro, m1.small, m1.large or leave t2.micro as the default"
+    }
+  },
+  "Resources": {
+    "Type": "AWS::EC2::Instance",
+    "InstanceType": {"Ref": "ec2TypeParam" },
+    "ImageId": " i-0d896148941655c19"
+  }
+
+}

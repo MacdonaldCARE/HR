@@ -28,6 +28,9 @@ public class StudentService {
         return  studentRepository.save(student);
     }
 
+    public Student getStudentById(Long id) {
+        return studentRepository.findById(id).orElseThrow(()-> new IllegalStateException("Student Not Found"));
+    }
     public void removeStudent(Long id) {
 
         boolean existsById = studentRepository.existsById(id);
