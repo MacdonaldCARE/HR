@@ -7,6 +7,7 @@ import com.tmgreyhat.api.jobTitles.JobTitleService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -48,6 +49,13 @@ public class TemplateController {
         model.addAttribute("departmentList",departmentService.getAllDepartments());
         model.addAttribute("jobTitles",jobTitleService.getAllJobTitles());
         return  "employee-add";
+    }
+
+    @PostMapping("/employee-add")
+    public String addEmployee(com.tmgreyhat.api.employees.Employee employee){
+
+        employeeService.addOneEmployee(employee);
+        return  "redirect:/employees";
     }
 
 }
