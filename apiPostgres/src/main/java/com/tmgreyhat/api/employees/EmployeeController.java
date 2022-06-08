@@ -23,21 +23,22 @@ public class EmployeeController {
         return  employeeService.getAllEmployees();
     }
     @GetMapping(path = "{id}")
-    public  Employee getOneEmployee(@PathVariable(name = "id") Long id){
+    public  Employee getOneEmployee(@PathVariable(name = "id") String id){
 
         return  employeeService.getOneEmployee(id);
 
     }
-    @GetMapping(path = "/departments/{id}")
+/*    @GetMapping(path = "/departments/{id}")
     public  List<Employee> getEmployeesFromDepartment(@PathVariable(name = "id") Long id){
 
 
         return  employeeService.getEmployeesFromDepartment(id);
-    }
+    }*/
 
     @PostMapping
     public  Employee createOneEmployee(@RequestBody Employee employee){
 
+        //System.out.println(employee);
         return  employeeService.addOneEmployee(employee);
     }
 
@@ -48,7 +49,7 @@ public class EmployeeController {
     }
 
     @DeleteMapping(path = "{id}")
-    public  void deleteEmployee(@PathVariable (name = "id") Long id){
+    public  void deleteEmployee(@PathVariable (name = "id") String id){
 
         employeeService.deleteOneEmployee(id);
     }

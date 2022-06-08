@@ -1,4 +1,4 @@
-package com.tapiwanashembizvo.security.jpa.models.User;
+package com.tmgreyhat.api.User;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

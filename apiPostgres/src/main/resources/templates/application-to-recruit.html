@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
 
@@ -41,209 +42,7 @@
         <div id="content">
 
             <!-- Topbar -->
-            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                <!-- Sidebar Toggle (Topbar) -->
-                <form class="form-inline">
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                </form>
-
-                <!-- Topbar Search -->
-                <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                    <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                               aria-label="Search" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">
-                                <i class="fas fa-search fa-sm"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-
-                <!-- Topbar Navbar -->
-                <ul class="navbar-nav ml-auto">
-
-                    <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                    <li class="nav-item dropdown no-arrow d-sm-none">
-                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <!-- Dropdown - Messages -->
-                        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                             aria-labelledby="searchDropdown">
-                            <form class="form-inline mr-auto w-100 navbar-search">
-                                <div class="input-group">
-                                    <input type="text" class="form-control bg-light border-0 small"
-                                           placeholder="Search for..." aria-label="Search"
-                                           aria-describedby="basic-addon2">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary" type="button">
-                                            <i class="fas fa-search fa-sm"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </li>
-
-                    <!-- Nav Item - Alerts -->
-                    <li class="nav-item dropdown no-arrow mx-1">
-                        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-bell fa-fw"></i>
-                            <!-- Counter - Alerts -->
-                            <span class="badge badge-danger badge-counter">3+</span>
-                        </a>
-                        <!-- Dropdown - Alerts -->
-                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                             aria-labelledby="alertsDropdown">
-                            <h6 class="dropdown-header">
-                                Alerts Center
-                            </h6>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-primary">
-                                        <i class="fas fa-file-alt text-white"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">December 12, 2019</div>
-                                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-success">
-                                        <i class="fas fa-donate text-white"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">December 7, 2019</div>
-                                    $290.29 has been deposited into your account!
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-warning">
-                                        <i class="fas fa-exclamation-triangle text-white"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">December 2, 2019</div>
-                                    Spending Alert: We've noticed unusually high spending for your account.
-                                </div>
-                            </a>
-                            <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                        </div>
-                    </li>
-
-                    <!-- Nav Item - Messages -->
-                    <li class="nav-item dropdown no-arrow mx-1">
-                        <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-envelope fa-fw"></i>
-                            <!-- Counter - Messages -->
-                            <span class="badge badge-danger badge-counter">7</span>
-                        </a>
-                        <!-- Dropdown - Messages -->
-                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                             aria-labelledby="messagesDropdown">
-                            <h6 class="dropdown-header">
-                                Message Center
-                            </h6>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="img/undraw_profile_1.svg"
-                                         alt="...">
-                                    <div class="status-indicator bg-success"></div>
-                                </div>
-                                <div class="font-weight-bold">
-                                    <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                        problem I've been having.</div>
-                                    <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="img/undraw_profile_2.svg"
-                                         alt="...">
-                                    <div class="status-indicator"></div>
-                                </div>
-                                <div>
-                                    <div class="text-truncate">I have the photos that you ordered last month, how
-                                        would you like them sent to you?</div>
-                                    <div class="small text-gray-500">Jae Chun · 1d</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="img/undraw_profile_3.svg"
-                                         alt="...">
-                                    <div class="status-indicator bg-warning"></div>
-                                </div>
-                                <div>
-                                    <div class="text-truncate">Last month's report looks great, I am very happy with
-                                        the progress so far, keep up the good work!</div>
-                                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                         alt="...">
-                                    <div class="status-indicator bg-success"></div>
-                                </div>
-                                <div>
-                                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                        told me that people say this to all dogs, even if they aren't good...</div>
-                                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                        </div>
-                    </li>
-
-                    <div class="topbar-divider d-none d-sm-block"></div>
-
-                    <!-- Nav Item - User Information -->
-                    <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                            <img class="img-profile rounded-circle"
-                                 src="img/undraw_profile.svg">
-                        </a>
-                        <!-- Dropdown - User Information -->
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                             aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Profile
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Settings
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Activity Log
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Logout
-                            </a>
-                        </div>
-                    </li>
-
-                </ul>
-
-            </nav>
+            <div th:replace="fragments/toolbar :: toolbar"></div>
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
@@ -263,101 +62,153 @@
                     <div class="card-body">
                         <div class = "col-md-12">
 
-                            <h2>Add New Employee Record</h2>
-                            <form th:action="@{/employees}" th:object="${employee}" method="post">
+                            <h2>Application to recruit</h2>
+                            <form th:action="@{/app-recruit}" th:object="${application}" method="post">
 
                                 <div class="form-row">
-                                    <div class="form-group col-md-3">
-                                        <label for="inputFirstname">First Name</label>
-                                        <input type="text" class="form-control" id="inputFirstname" placeholder="Kudakwashe" th:field="*{firstName}" th:value="${employee.firstName}">
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label for="inputLastName">Last Name</label>
-                                        <input type="text" class="form-control" id="inputLastName" placeholder="Sengweni" th:field="*{lastName}" th:value="${employee.lastName}">
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label for="phoneNumber">Phone Number</label>
-                                        <input type="text" class="form-control" id="phoneNumber" placeholder="Phone Number" th:field="*{phoneNumber}" th:value="${employee.phoneNumber}">
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label for="emailAddress">Employee Email Address</label>
-                                        <input type="email" class="form-control" id="emailAddress" placeholder="Email Address" th:field="*{email}" th:value="${employee.email}">
-                                    </div>
+                                    <div class="form-group col-md-12 col-sm-12 col-lg-3">
+                                        <label for="vacancy_type">Vacancy Type:</label>
+                                        <select class="form-control" id="vacancy_type" th:field="*{vacancyType}" onchange="checkIfCasual()">
 
-                                </div>
+                                            <option value="Substantive Staff">Substantive Staff</option>
+                                            <option value="Relief Staff">Relief Staff</option>
+                                            <option value="Graduate Intern">Graduate Intern</option>
+                                            <option value="Casual">Casual</option>
 
-
-
-
-                                <div class="form-row">
-                                    <div class="form-group col-md-4">
-                                        <label for="dateOfBirth">Date of Birth</label>
-                                        <input type="date" class="form-control" id="dateOfBirth" placeholder="Phone Number" th:field="*{dateOfBirth}" th:value="${employee.dateOfBirth}">
-                                    </div>
-
-                                    <div class="form-group col-md-4">
-                                        <label for="idNumber">Id Number</label>
-
-                                        <input type="text" class="form-control" id="idNumber" placeholder="63-1775874J27" th:field="*{idNumber}" th:value="${employee.idNumber}">
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="gender">Gender</label>
-
-                                        <select class="form-control" id="gender" th:field="*{gender}" >
-
-                                            <option value="FEMALE">FEMALE</option>
-                                            <option value="MALE">MALE</option>
                                         </select>
                                     </div>
+                                    <div class="form-group col-md-12 col-sm-12 col-lg-3">
+                                        <label for="position">Position Sought:</label>
 
+                                        <select class="form-control" id="position" th:field="*{position}">
+
+                                            <option th:each="position : ${positions}" th:value="${position.positionName}" th:text="${position.positionName}"></option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-12 col-sm-12 col-lg-3">
+                                        <label for="jobGrade"> Job Grade</label>
+                                        <select class="form-control" id="jobGrade" th:field="*{jobGrade}">
+
+                                            <option th:each="jobGrade : ${jobGrades}" th:value="${jobGrade.jobGrade}" th:text="${jobGrade.jobGrade}"></option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-12 col-sm-12 col-lg-3">
+                                        <label for="fund_code">Fund Code:</label>
+
+                                        <select class="form-control" id="fund_code" th:field="*{fundCode}">
+
+                                            <option th:each="fundCode : ${fundCodes}" th:value="${fundCode.fundCode}" th:text="${fundCode.fundCode}"></option>
+                                        </select>
+                                    </div>
 
 
 
                                 </div>
 
                                 <div class="form-row">
+                                    <div class="form-group col-md-12 col-sm-12 col-lg-3">
+                                        <label for="project_department">Requesting Project / Department:</label>
 
-                                    <div class="form-group col-md-3">
-                                        <label for="department">Department</label>
+                                        <select class="form-control" id="project_department" th:field="*{requestingDepartment}">
 
-                                        <select class="form-control" id="department" th:field="*{department}">
-
-                                            <option th:each="department : ${departmentList}" th:value="${department.id}" th:text="${department.name}"></option>
+                                            <option th:each="project : ${projects}" th:value="${project.projectName}" th:text="${project.projectName}"></option>
                                         </select>
                                     </div>
+                                    <div class="form-group col-md-12 col-sm-12 col-lg-3">
 
-                                    <div class="form-group col-md-3">
-                                        <label for="jobTitle">Job Title </label>
+                                        <label for="reporting_office">Reporting office:</label>
 
-                                        <select class="form-control" id="jobTitle"th:field="*{jobTitle}">
+                                        <select class="form-control" id="reporting_office" th:field="*{reportingOffice}">
 
-                                            <option th:each="jobTitle : ${jobTitles}" th:value="${jobTitle.id}" th:text="${jobTitle.jobTitle}"></option>
+                                            <option th:each="location : ${locations}" th:value="${location.officeLocation}" th:text="${location.officeLocation}"></option>
                                         </select>
+
+
                                     </div>
-                                    <div class="form-group col-md-3">
-                                        <label for="supervisor">Supervisor </label>
+                                    <div class="form-group col-md-12 col-sm-12 col-lg-3">
 
-                                        <select class="form-control" id="supervisor" th:field="*{supervisor}">
+                                        <label for="duty_station">Duty Station:</label>
 
-                                            <option th:each="supervisor : ${supervisors}" th:value="${supervisor.id}" th:text="${supervisor.firstName}"></option>
+                                        <select class="form-control" id="duty_station" th:field="*{station}">
+
+                                            <option th:each="location : ${locations}" th:value="${location.officeLocation}" th:text="${location.officeLocation}"></option>
                                         </select>
+
+
                                     </div>
-                                    <div class="form-group col-md-3">
-                                        <label for="isSupervisor">Is Employee A Supervisor ?</label>
 
-                                        <select class="form-control" id="isSupervisor"th:field="*{isSupervisor}">
+                                    <div class="form-group col-md-12 col-sm-12 col-lg-3">
 
-                                            <option value="TRUE">TRUE</option>
-                                            <option value="FALSE">FALSE</option>
+                                        <label for="area_of_operation">Area of Operation:</label>
+
+                                        <select class="form-control" id="area_of_operation" th:field="*{areaOfOperation}">
+
+                                            <option th:each="location : ${locations}" th:value="${location.officeLocation}" th:text="${location.officeLocation}"></option>
+                                        </select>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-12 col-sm-12 col-lg-3">
+                                        <label for = "start_date">Required Start Date</label>
+                                        <input class="form-control" id="start_date" type="date" th:field="*{startDate}" th:text="${application.startDate}" />
+                                    </div>
+                                    <div class="form-group col-md-12 col-sm-12 col-lg-3">
+                                        <label for = "end_date">Required End Date</label>
+                                        <input class="form-control"
+                                               id="end_date" type="date"
+                                               th:field="*{endDate}"
+                                               th:text="${application.endDate}" />
+                                    </div>
+                                    <div class="form-group col-md-12 col-sm-12 col-lg-3">
+                                        <label for="quantity_requested"> Number Needed</label>
+                                        <input type="number" min="1"
+                                               id="quantity_requested"
+                                               max="10" step="1" class="form-control"
+                                               th:field="*{quantity}" th:value="${application.quantity}" >
+                                    </div>
+                                    <div class="form-group col-md-12 col-sm-12 col-lg-3">
+                                        <label for="internal_recutiment">Internal Recruitment:</label>
+
+                                        <select class="form-control" id="internal_recutiment" th:field="*{internalRecruitment}">
+
+                                            <option value="true">TRUE</option>
+                                            <option value="false">FALSE</option>
                                         </select>
                                     </div>
 
                                 </div>
 
+                                <div class="form-row">
+                                    <div class="form-group col-md-12 col-sm-12 col-lg-4">
+                                        <label for="internal_recutiment">Reason for Recruitment:</label>
+
+                                        <textarea class="form-control" th:field="*{reasonForRecruitment}" th:text="${application.reasonForRecruitment}">
+
+                                        </textarea>
+                                    </div> <div class="form-group col-md-12 col-sm-12 col-lg-4">
+                                        <label for="internal_recutiment">Required Qualifications:</label>
+
+                                        <textarea class="form-control" th:field="*{requiredQualifications}" th:text="${application.requiredQualifications}">
+
+                                        </textarea>
+                                    </div> <div class="form-group col-md-12 col-sm-12 col-lg-4">
+                                        <label for="internal_recutiment">Optional  Qualifications:</label>
+
+                                        <textarea class="form-control" th:field="*{optionalQualifications}" th:text="${application.optionalQualifications}">
+
+                                        </textarea>
+                                    </div>
+                                </div>
+                               <div th:text="${loggedInUser.username}"></div>
+                              <!-- <div th:if="${loggedInUser.role=='ROLE_HRMANAGER'}">SOME TEXT FOR HR MANAGER</div>-->
+
 
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
-                                        <button class="btn btn-primary btn-user btn-block">Create Employee</button>
+                                        <button class="btn btn-primary btn-user btn-block">Submit Application to Recruit</button>
                                     </div>
                                 </div>
 
@@ -396,20 +247,52 @@
 </a>
 
 <!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
+                <h5 class="modal-title" id="exampleModalLabel">Select Casuals To Recruit</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-body">
+                <form method="post">
+                    <div class="form-row">
+                        <div class="col-sm-10">
+                            <div class="form-group">
+                                <label for="casual_name_search" class="col-form-label">Search Casual Name</label>
+                                <input type="text"
+                                       class="form-control"
+                                       id="casual_name_search"
+                                       name="casual_name_search"
+                                     >
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                            <button type="button" onclick="searchForCasual()" class="btn btn-primary">Search</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+                    <div class="form-group">
+                        <label for="search_results" class="col-form-label">Choose from List </label>
+                        <select id="search_results" name="search_results" class="form-control">
+                        </select>
+                    </div>
+                    <button type="button" onclick="addCasualToRecruitment()" class="btn btn-primary">Add Casual to Recruitment</button>
+
+                <ul id="added_casual">
+
+                </ul>
+
+            </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close When Done</button>
             </div>
         </div>
     </div>
@@ -433,5 +316,82 @@
 <script src="js/demo/datatables-demo.js"></script>
 
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
 
+<script>
+
+    function checkIfCasual(){
+
+    var elmt = document.getElementById("vacancy_type");
+    var vacancy_type = elmt.value;
+
+    if(vacancy_type==='Casual'){
+
+
+        $('#exampleModal').modal('show');
+    }
+
+    }
+    function removeOptions(selectElement) {
+   var i, L = selectElement.options.length - 1;
+   for(i = L; i >= 0; i--) {
+      selectElement.remove(i);
+   }
+}
+
+    function addCasualToRecruitment(){
+     var  select = document.getElementById('search_results');
+     var  results_list = document.getElementById('added_casual');
+     var employeeNumber = select.value;
+
+         var opt = document.createElement('li');
+        console.log("Employee Number to add is "+ employeeNumber);
+        var strUser = select.options[select.selectedIndex].text;
+
+      opt.innerHTML = strUser;
+      results_list.append(opt);
+
+
+    }
+
+    function searchForCasual() {
+
+    var edValue = document.getElementById("casual_name_search");
+    var search_var = edValue.value;
+    var  select = document.getElementById('search_results');
+    if(search_var.length>=3){
+
+     axios.get('/care/api/casual')
+            .then(function (response) {
+                 // handle success
+
+                 const employees = response.data;
+                 removeOptions(document.getElementById('search_results'));
+
+                 
+                 for(let employee of employees){
+                     console.log("WE HAVE "+employee);
+                     console.log("WE HAVE number "+employee.employeeNumber);
+
+                      var opt = document.createElement('option');
+                        opt.value = employee.employeeNumber;
+                        opt.innerHTML = employee.firstName +' '+ employee.lastName;
+                        select.appendChild(opt);
+                 }
+            console.log(response.data);
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
+        .then(function () {
+            // always executed
+        });
+    }else{
+    console.log("TOO SHORT"+ search_var);
+    }
+
+
+}
+</script>
 </html>

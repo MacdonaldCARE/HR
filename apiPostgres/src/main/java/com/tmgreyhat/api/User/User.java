@@ -1,4 +1,4 @@
-package com.tapiwanashembizvo.security.jpa.models.User;
+package com.tmgreyhat.api.User;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -36,6 +36,8 @@ public class User {
         this.active = active;
         this.roles = roles;
     }
+
+
 
     public int getId() {
         return id;

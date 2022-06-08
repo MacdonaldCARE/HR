@@ -1,5 +1,7 @@
 package com.tmgreyhat.api.employees;
 
+import com.tmgreyhat.api.User.User;
+import com.tmgreyhat.api.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,10 +11,12 @@ import java.util.List;
 public class EmployeeService {
 
     private final  EmployeeRepository employeeRepository;
+    private final UserService userService;
 
     @Autowired
-    public EmployeeService(EmployeeRepository employeeRepository) {
+    public EmployeeService(EmployeeRepository employeeRepository, UserService userService) {
         this.employeeRepository = employeeRepository;
+        this.userService = userService;
     }
 
 
@@ -20,12 +24,17 @@ public class EmployeeService {
 
         return  employeeRepository.findAll();
     }
+    public  List<Employee> getSupervisors(){
 
-    public Employee getOneEmployee(Long id) {
+        return  employeeRepository.getAllSupervisors();
+    }
 
-        boolean departmentExists = employeeRepository.findById(id).isPresent();
+    public Employee getOneEmployee(String id) {
 
-        if(!departmentExists){
+        boolean employeeExists = employeeRepository
+                .findById(id).isPresent();
+
+        if(!employeeExists){
 
             throw  new IllegalStateException("Employee with ID "+id+" does not exist");
         }
@@ -36,11 +45,12 @@ public class EmployeeService {
 
     public Employee updateEmployee(Employee employee) {
 
-        boolean departmentExists = employeeRepository.findById(employee.getId()).isPresent();
+        boolean departmentExists = employeeRepository
+                .findById(employee.getEmployeeNumber()).isPresent();
 
         if(!departmentExists){
 
-            throw  new IllegalStateException("Employee with ID "+employee.getId()+" does not exist");
+            throw  new IllegalStateException("Employee with ID "+employee.getEmployeeNumber()+" does not exist");
         }
 
         return  employeeRepository.save(employee);
@@ -48,18 +58,36 @@ public class EmployeeService {
 
     public Employee addOneEmployee(Employee employee) {
 
-        boolean employeeEmailTaken = employeeRepository.findByEmail(employee.getEmail()).isPresent();
+        boolean employeeEmailTaken = employeeRepository
+                .findByEmail(employee.getEmail()).isPresent();
 
         if(employeeEmailTaken){
 
             throw  new IllegalStateException("Employee with email "+employee.getEmail()+" Already exist");
         }
 
+        String userName = employee.getFirstName().toLowerCase()+"."+employee.getLastName().toLowerCase();
+        if(userService.checkIfUserExists(userName)){
+
+            throw  new IllegalStateException("Employee with username "+userName+" Already exist");
+        }
+
+
+        User new_system_user = new User(
+                userName,
+                userName,
+                employee.getEmployeeNumber(),
+                true,
+                employee.getSystemRole()
+        );
+
+
+        userService.registerNewUser(new_system_user);
         return  employeeRepository.save(employee);
 
     }
 
-    public void deleteOneEmployee(Long id) {
+    public void deleteOneEmployee(String id) {
 
         boolean departmentExists = employeeRepository.findById(id).isPresent();
 
@@ -70,8 +98,13 @@ public class EmployeeService {
         employeeRepository.deleteById(id);
     }
 
-    public List<Employee> getEmployeesFromDepartment(Long id) {
+/*    public List<Employee> getEmployeesFromDepartment(Long id) {
 
        return employeeRepository.findByDepartmentId(id);
+    }*/
+
+    public List<Employee> getSubordinates(String employeeNumber) {
+
+        return  employeeRepository.findEmployeeSupervisedBy(employeeNumber);
     }
 }

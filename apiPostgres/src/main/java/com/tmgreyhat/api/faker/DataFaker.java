@@ -1,3 +1,4 @@
+/*
 package com.tmgreyhat.api.faker;
 
 import com.tmgreyhat.api.departments.Department;
@@ -30,7 +31,7 @@ public class DataFaker {
                 new Department("Finance", "Finance")
 
         );
-
+        departmentRepository.saveAll(departmentList);
 
         Department itDepartment = departmentRepository.getById(1L);
         Department hrDepartment = departmentRepository.getById(2L);
@@ -57,24 +58,28 @@ public class DataFaker {
         );
 
 
-        departmentRepository.saveAll(departmentList);
-        employeeRepository.save(supervisor);
+
+       // employeeRepository.save(supervisor);
         Employee employee = new Employee(
                 "Sammy",
                 "Queen",
                 "squen@care.co.zw",
+                "0775719115",
                 javadeve,
                 itDepartment,
                 supervisor,
+                false,
                 "MALE"
         );
         Employee employee1 = new Employee(
                 "Trish",
                 "king",
                 "trish@care.co.zw",
+                "0775719115",
                 financeManager,
                 hrDepartment,
                 supervisor,
+                true,
                 "FEMALE"
         );
 
@@ -83,18 +88,24 @@ public class DataFaker {
                 "Dave",
                 "Sam",
                 "dave@care.co.zw",
+                "0775719115",
                 itManager,
                 financeDepartment,
                 supervisor,
+                false,
                 "MALE"
         );
-        employeeRepository.saveAll(
+        //System.out.println(" SAVING "+ employee.toString());
+       */
+/* employeeRepository.saveAll(
                 List.of(
                         employee,
                         employee1,
                         employee2
-                )
+
         );
+
+*//*
 
         return  args -> {
 
@@ -108,3 +119,4 @@ public class DataFaker {
 
 }
 
+*/

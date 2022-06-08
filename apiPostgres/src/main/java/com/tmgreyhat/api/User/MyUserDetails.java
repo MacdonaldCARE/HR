@@ -1,4 +1,4 @@
-package com.tapiwanashembizvo.security.jpa.models.User;
+package com.tmgreyhat.api.User;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

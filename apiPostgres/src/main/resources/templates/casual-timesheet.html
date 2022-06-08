@@ -21,9 +21,319 @@
     <!-- Custom styles for this template -->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../static/css/sb-admin-2.min.css" th:href="@{/css/sb-admin-2.min.css}"/>
-
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.full.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/accordion.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/components/accordion.min.js"></script>
     <!-- Custom styles for this page -->
 
+    <style>
+  section {
+  padding-left: 220px;
+  padding-right: 10px;
+  padding-bottom: 0px !important;
+  margin-bottom: 0px !important;
+}
+@media screen and (max-width: 991px) {
+  section {
+    padding-left: 70px;
+  }
+}
+
+body {
+  background-image: url("https://static.pexels.com/photos/173434/pexels-photo-173434.jpeg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.6) 40%, rgba(255, 255, 255, 0.85) 100%), url("https://static.pexels.com/photos/173434/pexels-photo-173434.jpeg");
+  background-repeat: no-repeat;
+}
+
+p {
+  font-family: "Roboto";
+}
+
+.maintitle {
+  padding: 20px 0 0px 0%;
+  margin-bottom: 50px;
+  text-align: center;
+  font-size: 40px;
+  font-weight: 200;
+}
+
+.timesheet-navigation {
+  margin-top: -30px;
+  margin-left: -12px;
+}
+
+.timesheet-buttons {
+  margin-top: 30px;
+}
+.today-timesheet {
+  margin-top: 30px;
+  position: relative;
+  top: -66px;
+  left: 200px;
+}
+
+.newmsgb, #theDate {
+  border: solid 1px #1c7f7d;
+  background-color: transparent;
+  color: #1c7f7d;
+  border-radius: 5px;
+  padding: 7px 15px 7px 15px;
+  white-space: nowrap;
+}
+
+.newmsgb:hover {
+  background-color: #1c7f7d;
+  color: white;
+}
+.newmsgb:focus {
+  outline: none !important;
+}
+
+#theDate {
+  margin-top: 5px;
+}
+
+.add-task-timesheet {
+  border-radius: 5px;
+  padding: 7px 15px 7px 15px;
+  white-space: nowrap;
+  background-color: #DD8F5B;
+  border: none;
+  margin-left: 10px;
+  color: white;
+}
+.add-task-timesheet:hover {
+  background-color: #E15959;
+}
+.add-task-timesheet:focus {
+  outline: none !important;
+}
+
+.tab-text {
+  padding-left: 20px;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.tab-title {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #1AAEAB;
+  color: white;
+  font-weight: 100;
+}
+@media screen and (max-width: 600px) {
+  .tab-title {
+    display: none;
+  }
+}
+.tab-title div div {
+  font-size: 15px;
+  font-weight: 500;
+  text-align: left;
+  padding-left: 5px;
+}
+@media screen and (max-width: 768px) {
+  .tab-title div div {
+    font-size: 13px;
+  }
+}
+
+.picked-day {
+  font-size: 24px;
+  color: #1c7f7d;
+}
+
+.dropdown-timesheet {
+  position: relative;
+  color: black;
+  top: -42px;
+  left: 140px;
+}
+.dropdown-timesheet .timesheet-button {
+  font-size: 14px;
+  border: none;
+  background-color: #1c7f7d;
+  color: white;
+  border-radius: 5px;
+  padding: 5px 15px 5px 15px;
+}
+.dropdown-timesheet .timesheet-button:focus {
+  outline: none;
+}
+.dropdown-timesheet .timesheet-button .fa-sort {
+  padding-right: 6px;
+}
+
+.timesheet-menu > li > a:focus, .timesheet-menu > li > a:hover {
+  background-color: rgba(28, 127, 125, 0.6);
+}
+
+.modal-backdrop.in {
+  z-index: 0 !important;
+  opacity: 0;
+}
+
+.modal-content {
+  box-shadow: none !important;
+  font-family: Roboto;
+}
+
+.timesheet .modal-title {
+  text-align: center;
+}
+
+.select2-container {
+  width: 255px !important;
+}
+
+.timesheet select, .timesheet input {
+  color: #444;
+  line-height: 28px;
+  padding-left: 8px;
+  padding-right: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  background-color: #fff;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  width: 255px;
+}
+@media screen and (max-width: 768px) {
+  .timesheet select, .timesheet input {
+    width: 200px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .timesheet .modal-body {
+    display: block;
+    margin: auto;
+    text-align: center;
+  }
+}
+.timesheet .modal-body .row {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.timesheet-description {
+  height: 118px !important;
+  padding-bottom: 83px !important;
+}
+
+.user-aciton {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 13px;
+  text-align: center;
+  color: white;
+  width: 255px;
+  height: 35px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 23px;
+  background-color: #E46A6A;
+  left: 0px;
+  top: 0px;
+  -webkit-transition: all 0.1s ease, top 0.1s ease 0.1s, height 0.1s ease 0.1s, background-color 0.1s ease 0.1s;
+  transition: all 0.1s ease, top 0.1s ease 0.1s, height 0.1s ease 0.1s, background-color 0.1s ease 0.1s;
+  padding: 0;
+}
+@media screen and (max-width: 768px) {
+  .user-aciton {
+    width: 200px;
+  }
+}
+
+.timesheet-task-row {
+  padding-top: 10px;
+}
+
+.nav-tabs {
+  background-color: white;
+  border: none;
+  width: 100%;
+}
+
+.nav-tabs > li {
+  width: 150px;
+  text-align: center;
+}
+@media screen and (max-width: 860px) {
+  .nav-tabs > li {
+    width: 103px;
+  }
+}
+@media screen and (max-width: 650px) {
+  .nav-tabs > li {
+    font-size: 90px !important;
+  }
+}
+
+.nav-tabs > li > a {
+  color: rgba(28, 127, 125, 0.6);
+  font-weight: 700;
+  font-size: 15px;
+  height: 60px;
+  line-height: 40px;
+  white-space: nowrap;
+}
+@media screen and (max-width: 860px) {
+  .nav-tabs > li > a {
+    font-size: 13px !important;
+  }
+}
+@media screen and (max-width: 650px) {
+  .nav-tabs > li > a {
+    font-size: 11px !important;
+  }
+}
+
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+  border: none;
+  border-bottom: solid 3px #dd915b;
+  border-radius: 0px;
+  color: #1c7f7d;
+  z-index: 1;
+}
+
+.nav > li > a:focus, .nav > li > a:hover {
+  background-color: rgba(28, 127, 125, 0.02);
+  border: none;
+  border-radius: 0px !important;
+}
+
+.tab-content {
+  overflow: hidden;
+}
+
+.tab-text {
+  padding-left: 20px;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.tab-title {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  background-color: #1AAEAB;
+  color: white;
+  font-weight: 100;
+}
+@media screen and (max-width: 600px) {
+  .tab-title {
+    display: none;
+  }
+}
+</style>
 </head>
 
 <body id="page-top">
@@ -42,314 +352,49 @@
         <div id="content">
 
             <!-- Topbar -->
-            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                <!-- Sidebar Toggle (Topbar) -->
-                <form class="form-inline">
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-                </form>
-
-                <!-- Topbar Search -->
-                <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                    <div class="input-group">
-                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                               aria-label="Search" aria-describedby="basic-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button">
-                                <i class="fas fa-search fa-sm"></i>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-
-                <!-- Topbar Navbar -->
-                <ul class="navbar-nav ml-auto">
-
-                    <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                    <li class="nav-item dropdown no-arrow d-sm-none">
-                        <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-search fa-fw"></i>
-                        </a>
-                        <!-- Dropdown - Messages -->
-                        <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                             aria-labelledby="searchDropdown">
-                            <form class="form-inline mr-auto w-100 navbar-search">
-                                <div class="input-group">
-                                    <input type="text" class="form-control bg-light border-0 small"
-                                           placeholder="Search for..." aria-label="Search"
-                                           aria-describedby="basic-addon2">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-primary" type="button">
-                                            <i class="fas fa-search fa-sm"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </li>
-
-                    <!-- Nav Item - Alerts -->
-                    <li class="nav-item dropdown no-arrow mx-1">
-                        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-bell fa-fw"></i>
-                            <!-- Counter - Alerts -->
-                            <span class="badge badge-danger badge-counter">3+</span>
-                        </a>
-                        <!-- Dropdown - Alerts -->
-                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                             aria-labelledby="alertsDropdown">
-                            <h6 class="dropdown-header">
-                                Alerts Center
-                            </h6>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-primary">
-                                        <i class="fas fa-file-alt text-white"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">December 12, 2019</div>
-                                    <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-success">
-                                        <i class="fas fa-donate text-white"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">December 7, 2019</div>
-                                    $290.29 has been deposited into your account!
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="mr-3">
-                                    <div class="icon-circle bg-warning">
-                                        <i class="fas fa-exclamation-triangle text-white"></i>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div class="small text-gray-500">December 2, 2019</div>
-                                    Spending Alert: We've noticed unusually high spending for your account.
-                                </div>
-                            </a>
-                            <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                        </div>
-                    </li>
-
-                    <!-- Nav Item - Messages -->
-                    <li class="nav-item dropdown no-arrow mx-1">
-                        <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-envelope fa-fw"></i>
-                            <!-- Counter - Messages -->
-                            <span class="badge badge-danger badge-counter">7</span>
-                        </a>
-                        <!-- Dropdown - Messages -->
-                        <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                             aria-labelledby="messagesDropdown">
-                            <h6 class="dropdown-header">
-                                Message Center
-                            </h6>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="img/undraw_profile_1.svg"
-                                         alt="...">
-                                    <div class="status-indicator bg-success"></div>
-                                </div>
-                                <div class="font-weight-bold">
-                                    <div class="text-truncate">Hi there! I am wondering if you can help me with a
-                                        problem I've been having.</div>
-                                    <div class="small text-gray-500">Emily Fowler · 58m</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="img/undraw_profile_2.svg"
-                                         alt="...">
-                                    <div class="status-indicator"></div>
-                                </div>
-                                <div>
-                                    <div class="text-truncate">I have the photos that you ordered last month, how
-                                        would you like them sent to you?</div>
-                                    <div class="small text-gray-500">Jae Chun · 1d</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="img/undraw_profile_3.svg"
-                                         alt="...">
-                                    <div class="status-indicator bg-warning"></div>
-                                </div>
-                                <div>
-                                    <div class="text-truncate">Last month's report looks great, I am very happy with
-                                        the progress so far, keep up the good work!</div>
-                                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
-                                <div class="dropdown-list-image mr-3">
-                                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60"
-                                         alt="...">
-                                    <div class="status-indicator bg-success"></div>
-                                </div>
-                                <div>
-                                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone
-                                        told me that people say this to all dogs, even if they aren't good...</div>
-                                    <div class="small text-gray-500">Chicken the Dog · 2w</div>
-                                </div>
-                            </a>
-                            <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
-                        </div>
-                    </li>
-
-                    <div class="topbar-divider d-none d-sm-block"></div>
-
-                    <!-- Nav Item - User Information -->
-                    <li class="nav-item dropdown no-arrow">
-                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                            <img class="img-profile rounded-circle"
-                                 src="img/undraw_profile.svg">
-                        </a>
-                        <!-- Dropdown - User Information -->
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                             aria-labelledby="userDropdown">
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Profile
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Settings
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Activity Log
-                            </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                Logout
-                            </a>
-                        </div>
-                    </li>
-
-                </ul>
-
-            </nav>
+            <div th:replace="fragments/toolbar :: toolbar"></div>
             <!-- End of Topbar -->
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
 
                 <!-- Page Heading -->
-                <h1 class="h3 mb-2 text-gray-800">Employees</h1>
+                <h1 class="h3 mb-2 text-gray-800">Time Sheet</h1>
 
 
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Care Zimbabwe Employee Management</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Care Zimbabwe - Casual TimeSheet</h6>
 
 
                     </div>
                     <div class="card-body">
                         <div class = "col-md-12">
 
-                            <h2>View Employee Record</h2>
-                            <form th:action="@{/employees}" th:object="${employee}" method="post">
-
-                                <div class="form-row">
-                                    <div class="form-group col-md-3">
-                                        <label for="inputFirstname">First Name</label>
-                                        <input type="text" class="form-control" id="inputFirstname" placeholder="Kudakwashe" th:field="*{firstName}" th:value="${employee.firstName}" disabled="disabled">
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label for="inputLastName">Last Name</label>
-                                        <input type="text" class="form-control" id="inputLastName" placeholder="Sengweni" th:field="*{lastName}" th:value="${employee.lastName}" disabled="disabled">
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label for="phoneNumber">Phone Number</label>
-                                        <input type="text" class="form-control" id="phoneNumber" placeholder="Phone Number" th:field="*{phoneNumber}" th:value="${employee.phoneNumber}" disabled="disabled">
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label for="emailAddress">Employee Email Address</label>
-                                        <input type="email" class="form-control" id="emailAddress" placeholder="Email Address" th:field="*{email}" th:value="${employee.email}" disabled="disabled">
-                                    </div>
-
-                                </div>
+                            <h2>Record TimeSheet</h2>
 
 
 
-
-                                <div class="form-row">
-                                    <div class="form-group col-md-4">
-                                        <label for="dateOfBirth">Date of Birth</label>
-                                        <input type="date" class="form-control" id="dateOfBirth" placeholder="Phone Number"  th:value="${employee.dateOfBirth}" disabled="disabled">
-                                    </div>
-
-                                    <div class="form-group col-md-4">
-                                        <label for="idNumber">Id Number</label>
-
-                                        <input type="text" class="form-control" id="idNumber" placeholder="63-1775874J27"  th:value="${employee.idNumber}" disabled="disabled">
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="gender">Gender</label>
-
-                                        <input type="text" class="form-control" id="gender" placeholder="NONE"  th:value="${employee.gender}" disabled="disabled">
-                                    </div>
-
-
-
-
-                                </div>
-
-                                <div class="form-row">
-
-                                    <div class="form-group col-md-3">
-                                        <label for="department">Department</label>
-
-
-
-                                            <input type="text" class="form-control" id="department" placeholder="NONE"  th:value="${employee.department.name}" disabled="disabled">
-
-                                    </div>
-
-                                    <div class="form-group col-md-3">
-                                        <label for="jobTitle">Job Title </label>
-
-                                        <input type="text" class="form-control" id="jobTitle" placeholder="NONE"  th:value="${employee.jobTitle.jobTitle}" disabled="disabled">
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label for="supervisor">Supervisor </label>
-
-                                        <input type="text" class="form-control" id="supervisor" placeholder="NONE"  th:value="${employee?.supervisor?.lastName}" disabled="disabled">
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <label for="isSupervisor">Is Employee A Supervisor ?</label>
-
-                                        <input type="text" class="form-control" id="isSupervisor" placeholder="NONE"  th:value="${employee.isSupervisor}" disabled="disabled">
-                                    </div>
-
-                                </div>
-
-
-
-
-                            </form>
                             <div class="row">
-                                <div class="form-group col-md-4">
-                                    <a th:href="@{/employees-edit/{id}(id=${employee.id})}">
-                                        <button class="btn btn-primary btn-user btn-block">Click here to edit Employee details</button>
-                                    </a>
+
+                                <div class="col-sm-12  col-md-4">
+                                    <label>Select Month </label>
+                                    <input type="month" class="form-control" id="start" name="start"
+                                           min="2022-03" value="2022-05" onclick="onCalendarClick()">
+
+
+                                </div>
+
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col-sm-12  col-md-4">
+                                    <button type="button"
+                                            class="btn btn-primary btn-user btn-block"
+                                            data-toggle="modal"
+                                            data-target="#exampleModal">Add New Record</button>
+
                                 </div>
                             </div>
 
@@ -386,25 +431,67 @@
 </a>
 
 <!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
+
+
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
+                <h5 class="modal-title" id="exampleModalLabel">Add Time Sheet Record</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-body">
+                <form th:action="@{/timesheet-add}" th:object="${timesheetEntry}" method="post">
+                    <div class="form-group">
+                        <label for="recipient-name" class="col-form-label">Day :</label>
+                        <input type="date" class="form-control" id="recipient-name" th:field="*{date}" th:value="${timesheetEntry.date}">
+                    </div>
+                    <div class="form-group">
+                        <label for="employeeNumber" class="col-form-label">Employee Number</label>
+                        <input type="number" class="form-control" id="employeeNumber" th:field="*{employeeNumber}" th:value="${timesheetEntry.employeeNumber}">
+                    </div>
+                    <div class="form-group">
+                        <label for="project_department">Project:</label>
+
+                        <select class="form-control" id="project_department" th:field="*{project}">
+
+                            <option th:each="project : ${projects}" th:value="${project.projectName}" th:text="${project.projectName}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="duty_station">Duty Station:</label>
+
+                        <select class="form-control" id="duty_station" th:field="*{location}">
+
+                            <option th:each="location : ${locations}" th:value="${location.officeLocation}" th:text="${location.officeLocation}"></option>
+                        </select>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="hours_worked">Hours Worked</label>
+                        <input type="number"
+                               min="0" max="8" step="0.1"
+                               id="hours_worked"
+                               th:field="*{hoursWorked}"
+                               th:value="${timesheetEntry.hoursWorked}"
+                               class="form-control"
+                               name="hours_worked"/>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Save Record</button>
+                </form>
+            </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="login.html">Logout</a>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
             </div>
         </div>
     </div>
 </div>
-
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script type="text/javascript" src="../static/vendor/jquery/jquery.min.js" th:src="@{/vendor/jquery/jquery.min.js}"></script>
@@ -423,5 +510,10 @@
 
 <!--<link rel="stylesheet" type="text/css" href="../static/css/sb-admin-2.min.css" th:href="@{/css/sb-admin-2.min.css}"/>-->
 </body>
+
+<script>
+
+
+</script>
 
 </html>

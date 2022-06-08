@@ -3,69 +3,65 @@ package com.tmgreyhat.api.employees;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.tmgreyhat.api.departments.Department;
 import com.tmgreyhat.api.jobTitles.JobTitle;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.w3c.dom.stylesheets.LinkStyle;
 
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "employees")
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class Employee {
 
+
+
     @Id
-    @SequenceGenerator(
-            name = "employee_sequence",
-            allocationSize = 1,
-            sequenceName = "employee_sequence"
-    )
-    @GeneratedValue(
-            strategy =  GenerationType.SEQUENCE,
-            generator = "employee_sequence")
-    @Column(name = "employee_id")
-    private Long id;
+    private String employeeNumber;
+    @Column(nullable = false)
     private String firstName;
+
+    @Column(nullable = false)
     private String lastName;
+
+    @Transient
+    private  String fullName;
+    @Column(unique = true, nullable = false)
     private String email;
+
+    @Column(unique = true, nullable = false)
     private String phoneNumber;
+
     private Boolean isSupervisor;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "jobTitle_id")
-    @JsonBackReference
-    private JobTitle jobTitle;
+    private String jobGrade;
 
-    @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "department_id")
-    @JsonBackReference
-    private Department department;
+    private String position;
 
+    private String department;
 
+    @Transient
+    private String systemRole;
     private String gender;
 
-/*    @JoinTable(name = "EMPLOYEE_SUBORDINATES", joinColumns = {
-            @JoinColumn(name = "ADDING_USER", referencedColumnName = "EMPLOYEE_ID", nullable =   false)}, inverseJoinColumns = {
-            @JoinColumn(name = "ADD_EMPLOYEE", referencedColumnName = "EMPLOYEE_ID", nullable = false)})
+    private String idNumber;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JsonBackReference
-    private Collection<Employee> subordinates;
-
-    @ManyToMany(mappedBy = "subordinates")
-    private Collection<Employee> addEmployee;*/
+    private LocalDate dateOfBirth;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Employee supervisor;
 
     @OneToMany(mappedBy = "supervisor")
     private Set<Employee> subordinates;
-
-
 
     public Employee() {
     }
@@ -74,54 +70,69 @@ public class Employee {
                     String firstName,
                     String lastName,
                     String email,
-                    JobTitle title,
-                    Department department,
-
+                    String department,
                     String gender) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.jobTitle = title;
         this.department = department;
-
         this.gender = gender;
-    }public Employee(
+    }
+    public Employee(
                     String firstName,
                     String lastName,
                     String email,
-                    JobTitle title,
-                    Department department,
+                    String phoneNumber,
+                    String jobGrade,
+                    String position,
+                    String systemRole,
+                    String department,
                     Employee supervisor,
-                    String gender) {
+                    boolean isSupervisor,
+                    String gender,
+                    String employeeNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.jobTitle = title;
+        this.phoneNumber = phoneNumber;
+        this.jobGrade = jobGrade;
+        this.position = position;
+        this.systemRole = systemRole;
+        this.isSupervisor = isSupervisor;
         this.department = department;
         this.supervisor = supervisor;
         this.gender = gender;
+        this.employeeNumber = employeeNumber;
     }
 
     public Employee(
-            Long id,
             String firstName,
             String lastName,
             String email,
-            Department department,
-            JobTitle title,
-            String gender) {
-        this(firstName, lastName, email, title, department,gender);
-        this.id = id;
+            String phoneNumber,
+            String jobGrade,
+            String position,
+            String systemRole,
+            String department,
+            boolean isSupervisor,
+            String gender,
+            String employeeNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.jobGrade = jobGrade;
+        this.position = position;
+        this.systemRole = systemRole;
+        this.isSupervisor = isSupervisor;
+        this.department = department;
 
+        this.gender = gender;
+        this.employeeNumber = employeeNumber;
     }
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+
 
     public String getFirstName() {
         return firstName;
@@ -149,11 +160,11 @@ public class Employee {
 
 
 
-    public Department getDepartment() {
+    public String getDepartment() {
         return department;
     }
 
-    public void setDepartment(Department department) {
+    public void setDepartment(String department) {
         this.department = department;
     }
 
@@ -191,31 +202,85 @@ public class Employee {
         isSupervisor = supervisor;
     }
 
-    public JobTitle getJobTitle() {
-        return jobTitle;
+    public String getSystemRole() {
+        return systemRole;
     }
 
-    public void setJobTitle(JobTitle jobTitle) {
-        this.jobTitle = jobTitle;
+    public void setSystemRole(String systemRole) {
+        this.systemRole = systemRole;
     }
 
     public void setSubordinates(Set<Employee> subordinates) {
         this.subordinates = subordinates;
     }
 
+    public String getIdNumber() {
+        return idNumber;
+    }
+
+    public void setIdNumber(String idNumber) {
+        this.idNumber = idNumber;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public  void setIsSupervisor(Boolean isSupervisor){
+
+        this.isSupervisor = isSupervisor;
+    }
+
+    public String getJobGrade() {
+        return jobGrade;
+    }
+
+    public void setJobGrade(String jobGrade) {
+        this.jobGrade = jobGrade;
+    }
+
+    public  Boolean getIsSupervisor(){
+
+        return  this.isSupervisor;
+    }
+
+    public String getEmployeeNumber() {
+        return employeeNumber;
+    }
+
+    public void setEmployeeNumber(String employeeNumber) {
+        this.employeeNumber = employeeNumber;
+    }
+
+    public String getFullName() {
+        return this.lastName+" "+ this.firstName;
+    }
+
+
     @Override
     public String toString() {
         return "Employee{" +
-                "id=" + id +
+                "employeeNumber='" + employeeNumber + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", isSupervisor=" + isSupervisor +
-                ", jobTitle=" + jobTitle +
-                ", department=" + department +
-                ", gender='" + gender + '\'' +
-                ", supervisor=" + supervisor +
+                ", jobGrade='" + jobGrade + '\'' +
+                ", department='" + department + '\'' +
+                ", systemRole='" + systemRole + '\'' +
                 ", subordinates=" + subordinates +
                 '}';
     }

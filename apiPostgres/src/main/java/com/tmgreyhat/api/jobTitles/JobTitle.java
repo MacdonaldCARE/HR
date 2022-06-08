@@ -24,9 +24,6 @@ public class JobTitle {
     private String jobTitle;
     private String jobGrade;
     private String description;
-    @OneToMany(mappedBy = "jobTitle", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JsonManagedReference
-    private List<Employee> employees;
 
 
     public JobTitle() {
@@ -73,14 +70,6 @@ public class JobTitle {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-    @JsonManagedReference(value = "jobTitle-employees")
-    public List<Employee> getEmployees() {
-        return employees;
-    }
-
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
     }
 
     @Override

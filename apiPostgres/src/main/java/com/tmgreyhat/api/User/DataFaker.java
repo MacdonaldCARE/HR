@@ -1,14 +1,8 @@
-package com.tapiwanashembizvo.security.jpa.faker;
+package com.tmgreyhat.api.User;
 
-import com.tapiwanashembizvo.security.jpa.models.Topic.Topic;
-import com.tapiwanashembizvo.security.jpa.models.Topic.TopicService;
-import com.tapiwanashembizvo.security.jpa.models.User.User;
-import com.tapiwanashembizvo.security.jpa.models.User.UserService;
-import com.tapiwanashembizvo.security.jpa.models.course.Course;
-import com.tapiwanashembizvo.security.jpa.models.course.CourseService;
-import com.tapiwanashembizvo.security.jpa.models.courseNote.CourseNote;
-import com.tapiwanashembizvo.security.jpa.models.courseNote.CourseNoteRepository;
-import com.tapiwanashembizvo.security.jpa.models.courseNote.CourseNoteService;
+
+import com.tmgreyhat.api.employees.Employee;
+import com.tmgreyhat.api.employees.EmployeeService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,11 +14,10 @@ public class DataFaker {
 
 
     @Bean
-    CommandLineRunner commandLineRunner(
+    CommandLineRunner commandLineRunnerFaker(
             UserService userService,
-            CourseService courseService,
-            CourseNoteService courseNoteService,
-            TopicService topicService
+            EmployeeService employeeService
+
     ){
 
         User root_user = new User(
@@ -32,34 +25,96 @@ public class DataFaker {
                 "tapiwa",
                 "21080",
                 true,
-                "ROLE_USER,ROLE_ADMIN"
+                "ROLE_ADMIN"
 
         );
-        Course course = new Course(
-                "BP CHECK",
-                LocalDate.now(),
-                root_user
+
+        User hrmanager = new User(
+                "hrmanager",
+                "hrmanager",
+                "21081",
+                true,
+                "ROLE_HRM"
+        );
+        //ROLE_HRMANAGER, ROLE_BUDGETHOLDER, ROLE_COUNTRYDIRECTOR, ROLE_ASSISTANTCOUNTRYDIRECTOR
+        User budget_hold = new User(
+                "budgetHolder",
+                "budgetHolder",
+                "21082",
+                true,
+                "ROLE_BH"
+        );
+        User country_director = new User(
+                "countryDirector",
+                "countryDirector",
+                "21083",
+                true,
+                "ROLE_CD"
         );
 
-        Topic topic = new Topic(
-                "BP CHECK",
-                course,
-                "This is a topic"
+        //ROLE_CD, ROLE_ACD, ROLE_BH, ROLE_HRM, ROLE_ADMIN, ROLE_GEN
+        User assistant_country_director = new User(
+                "assistantCountryDirector",
+                "assistantCountryDirector",
+                "21084",
+                true,
+                "ROLE_ACD"
         );
 
 
-        CourseNote courseNote = new CourseNote(
-                "Testing BP Patient",
-                "Some pretty long formatted",
-                "imagenameNice, imagename",
-                topic
+/**
+ * String firstName,
+ *             String lastName,
+ *             String email,
+ *             String phoneNumber,
+ *             String jobGrade,
+ *             String position,
+ *             String systemRole,
+ *             String department,
+ *             boolean isSupervisor,
+ *             String gender,
+ *             String employeeNumber
+ */
+
+
+
+        Employee country_director_emp = new Employee(
+
+                "Charles", "Manning",
+                "cmanning@care.co.zw",
+                "0774714774", "A1",
+                "Country Director", "ROLE_CD",
+                "Program Support",
+                true, "MALE",
+                "2108121"
+
+
         );
+        //ROLE_CD, ROLE_ACD, ROLE_BH, ROLE_HRM, ROLE_ADMIN, ROLE_GEN
+        Employee hr_manager = new Employee(
+
+                "Patricia", "Sadomba",
+                "psadomba@care.co.zw",
+                "0774124112", "A1",
+                "HR Manager", "ROLE_HRM",
+                "Program Support",
+                true, "FEMALE",
+                "210841"
+
+
+        );
+
 
         return args -> {
-            userService.registerNewUser(root_user);
-            courseService.addCourse(course);
-            topicService.createTopic(topic);
-            courseNoteService.createCourseNote(courseNote);
+
+           // employeeService.addOneEmployee(country_director_emp);
+            //employeeService.addOneEmployee(hr_manager);
+           // userService.registerNewUser(root_user);
+            //userService.registerNewUser(hrmanager);
+            //userService.registerNewUser(budget_hold);
+            //userService.registerNewUser(country_director);
+            //userService.registerNewUser(assistant_country_director);
+
         };
     }
 

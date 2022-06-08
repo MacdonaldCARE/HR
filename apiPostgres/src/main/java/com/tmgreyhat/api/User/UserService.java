@@ -1,4 +1,4 @@
-package com.tapiwanashembizvo.security.jpa.models.User;
+package com.tmgreyhat.api.User;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -13,6 +13,7 @@ public class UserService {
     Logger logger = Logger.getLogger(UserService.class.getName());
     private final PasswordEncoder passwordEncoder;
     private final  UserRepository userRepository;
+
 
     public UserService(PasswordEncoder passwordEncoder, UserRepository userRepository) {
         this.passwordEncoder = passwordEncoder;
@@ -38,5 +39,15 @@ public class UserService {
     public List<User> getAllUsers() {
 
         return  userRepository.findAll();
+    }
+
+    public boolean checkIfUserExists(String userName) {
+
+        return  userRepository.findByUserName(userName).isPresent();
+    }
+
+    public User getUserByUserName(String username) {
+
+        return  userRepository.findByUserName(username).get();
     }
 }
