@@ -66,7 +66,10 @@ public class EmployeeTemplateController {
 
 
        //extract first character of the first name
-        String userName = employee.getFirstName().toLowerCase() +"."+ employee.getLastName().toLowerCase();
+        //String userName = employee.getFirstName().toLowerCase() +"."+ employee.getLastName().toLowerCase();
+
+        String[] names = employee.getFullName().split("");
+        String userName = names[0]+"."+names[1];
         User new_system_user = new User(
                 userName,
                 userName,

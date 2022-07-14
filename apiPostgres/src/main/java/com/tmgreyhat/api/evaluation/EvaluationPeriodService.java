@@ -4,6 +4,7 @@ import com.tmgreyhat.api.objective.Objective;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EvaluationPeriodService {
@@ -24,7 +25,7 @@ public class EvaluationPeriodService {
             return  evaluationPeriodRepository.findByEmployeeNumberYearAndQuarter(
                     evaluationPeriod.getEmployeeNumber(),
                     evaluationPeriod.getYear(),
-                    evaluationPeriod.getQuarter());
+                    evaluationPeriod.getQuarter()).get();
 
 
         }
@@ -37,7 +38,7 @@ public class EvaluationPeriodService {
         return  evaluationPeriodRepository.getById(evaluationPeriodId);
     }
 
-    public  EvaluationPeriod getEvaluationPeriod(String employeeNumber, int year , String quarter){
+    public Optional<EvaluationPeriod> getEvaluationPeriod(String employeeNumber, int year , String quarter){
 
 
         return  evaluationPeriodRepository.findByEmployeeNumberYearAndQuarter(employeeNumber, year, quarter);

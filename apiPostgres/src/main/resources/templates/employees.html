@@ -64,7 +64,7 @@
                                 <thead>
                                 <tr>
                                     <th>Full Name</th>
-                                    <th>Gender</th>
+
                                     <th>Phone Number</th>
                                     <th>Email</th>
                                     <th>Department</th>
@@ -75,7 +75,7 @@
                                 <tfoot>
                                 <tr>
                                     <th>Full Name</th>
-                                    <th>Gender</th>
+
                                     <th>Phone Number</th>
                                     <th>Email</th>
                                     <th>Department</th>
@@ -87,14 +87,13 @@
 
                                 <tr th:each="employee : ${employeeList}">
 
-                                    <td th:text="${employee.firstName + ' '+ employee.lastName}" />
-                                    <td th:text="${employee.gender}" />
+                                    <td th:text="${employee.fullName}" />
+
                                     <td th:text="${employee.phoneNumber}" />
                                     <td th:text="${employee.email}" />
                                     <td th:text="${employee.department}" />
                                     <td th:text="${employee.position}" />
                                     <td >
-
                                         <a th:href="@{/employees-view/{id}(id=${employee.employeeNumber})}" class="btn btn-success btn-icon-split">
                                         <span class="icon text-white-50">
                                             <i class="fas fa-user"></i>

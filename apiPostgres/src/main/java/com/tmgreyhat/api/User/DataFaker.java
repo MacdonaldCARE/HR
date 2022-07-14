@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.time.LocalDate;
-
+/*
 @Configuration
 public class DataFaker {
 
@@ -59,9 +59,9 @@ public class DataFaker {
                 "21084",
                 true,
                 "ROLE_ACD"
-        );
+        )
 
-
+/*
 /**
  * String firstName,
  *             String lastName,
@@ -74,7 +74,7 @@ public class DataFaker {
  *             boolean isSupervisor,
  *             String gender,
  *             String employeeNumber
- */
+
 
 
 
@@ -104,18 +104,34 @@ public class DataFaker {
 
         );
 
+        //Patrick Sikana	Country Director	Program Support
+
+        Employee psikana = new Employee(
+
+                "Patrick", "Sikana",
+                "psikana@care.co.zw", "077",
+                "A1", "Country Director",
+                "ROLE_CD", "Program Support",
+                true,
+                "MALE",
+                "PS101"
+        );
 
         return args -> {
 
-           // employeeService.addOneEmployee(country_director_emp);
-            //employeeService.addOneEmployee(hr_manager);
-           // userService.registerNewUser(root_user);
-            //userService.registerNewUser(hrmanager);
-            //userService.registerNewUser(budget_hold);
-            //userService.registerNewUser(country_director);
-            //userService.registerNewUser(assistant_country_director);
+           //employeeService.addOneEmployee(country_director_emp);
+          //  employeeService.addOneEmployee(hr_manager);
+          //  userService.registerNewUser(root_user);
+          //  userService.registerNewUser(hrmanager);
+          //  userService.registerNewUser(budget_hold);
+          //  userService.registerNewUser(country_director);
+          //  userService.registerNewUser(assistant_country_director);
+
+          //  employeeService.addOneEmployee(psikana);
 
         };
     }
 
-}
+};
+{
+ */

@@ -7,6 +7,7 @@ import com.tmgreyhat.api.evaluation.EvaluationPeriod;
 import com.tmgreyhat.api.evaluation.EvaluationPeriodService;
 import com.tmgreyhat.api.objective.EmployeeReviewEntry;
 import com.tmgreyhat.api.objective.Objective;
+import com.tmgreyhat.api.objective.ObjectiveRating;
 import com.tmgreyhat.api.objective.ObjectiveService;
 import com.tmgreyhat.api.objective.objectiveComments.ObjectiveComment;
 import com.tmgreyhat.api.objective.objectiveComments.ObjectiveCommentService;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.OptionalDouble;
 import java.util.logging.Logger;
 
 import static com.tmgreyhat.api.security.LoggedInUserProvider.getLoggedInUser;
@@ -97,8 +99,17 @@ public class HRObjectiveController {
             employeeReviewEntry.setEvaluationPeriod(evaluationPeriod.getYear()+ " "+ evaluationPeriod.getQuarter());
             employeeReviewEntryList.add(employeeReviewEntry);
         });
+
+        int totalObjectives = objectiveList.size();
+        OptionalDouble averageRating = employeeReviewEntryList.stream().mapToDouble(EmployeeReviewEntry::getEmployeeRating).average();
+
+        ObjectiveRating rating = new ObjectiveRating();
+        rating.setTotal(totalObjectives);
+        rating.setAverage(averageRating.isPresent()? averageRating.getAsDouble() : 0 );
+
         logger.info("EVAL PERIOD "+ theEvaluationPeriod);
         model.addAttribute("employee", employee);
+        model.addAttribute("rating", rating);
         model.addAttribute("employeeReviews", employeeReviewEntryList);
         model.addAttribute("evaluationPeriod", theEvaluationPeriod);
         model.addAttribute("loggedInUser", loggedInUser);

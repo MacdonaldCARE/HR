@@ -21,7 +21,7 @@ public class StudentService {
     }
 
     public Student addNewStudent(Student student) {
-        Optional<Student> studentByEmail = studentRepository.findStudentByEmail(student.getEmail());
+        Optional<Student>studentByEmail = Optional.ofNullable(studentRepository.findStudentByEmail(student.getEmail()));
         if(studentByEmail.isPresent()){
             throw  new IllegalStateException("WELL EMAIL AlREADY TAKEN");
         }

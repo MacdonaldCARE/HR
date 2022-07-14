@@ -64,7 +64,7 @@
                                 <thead>
                                 <tr>
                                     <th>Full Name</th>
-                                    <th>Gender</th>
+
                                     <th>Phone Number</th>
                                     <th>Email</th>
                                     <th>Department</th>
@@ -75,7 +75,7 @@
                                 <tfoot>
                                 <tr>
                                     <th>Full Name</th>
-                                    <th>Gender</th>
+
                                     <th>Phone Number</th>
                                     <th>Email</th>
                                     <th>Department</th>
@@ -87,8 +87,8 @@
 
                                 <tr th:each="employee : ${employeeList}">
 
-                                    <td th:text="${employee.firstName + ' '+ employee.lastName}" />
-                                    <td th:text="${employee.gender}" />
+                                    <td th:text="${employee.fullName}" />
+
                                     <td th:text="${employee.phoneNumber}" />
                                     <td th:text="${employee.email}" />
                                     <td th:text="${employee.department}" />

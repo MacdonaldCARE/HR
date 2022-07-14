@@ -31,7 +31,7 @@ public class ObjectiveService {
         return objectiveRepository.findByEvaluationPeriodIdAndEmployeeNumber(id, employeeNumber);
     }
 
-    public Objective geObjectiveById(Long id) {
+    public Objective getObjectiveById(Long id) {
 
         return  objectiveRepository.findById(id).get();
     }
@@ -42,5 +42,11 @@ public class ObjectiveService {
 
           return  objective.getEvaluationPeriodId();
 
+    }
+
+
+    public Objective updateObjective(Objective objective) {
+
+        return objectiveRepository.save(objective);
     }
 }

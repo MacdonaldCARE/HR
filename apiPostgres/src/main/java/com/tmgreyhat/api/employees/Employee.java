@@ -26,36 +26,26 @@ public class Employee {
 
     @Id
     private String employeeNumber;
-    @Column(nullable = false)
-    private String firstName;
-
-    @Column(nullable = false)
-    private String lastName;
 
     @Transient
+    private String supervisorNumber;
+    @Column
     private  String fullName;
     @Column(unique = true, nullable = false)
     private String email;
-
     @Column(unique = true, nullable = false)
     private String phoneNumber;
-
     private Boolean isSupervisor;
-
+    @Column(nullable = true)
     private String jobGrade;
 
+    private int jobGradeStep;
     private String position;
-
     private String department;
 
     @Transient
     private String systemRole;
-    private String gender;
 
-    private String idNumber;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-
-    private LocalDate dateOfBirth;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Employee supervisor;
@@ -67,20 +57,19 @@ public class Employee {
     }
 
     public Employee(
-                    String firstName,
-                    String lastName,
+
+                    String fullName,
                     String email,
-                    String department,
-                    String gender) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+                    String department
+                    ) {
+        this.fullName = fullName;
+
         this.email = email;
         this.department = department;
-        this.gender = gender;
+
     }
     public Employee(
-                    String firstName,
-                    String lastName,
+                    String fullName,
                     String email,
                     String phoneNumber,
                     String jobGrade,
@@ -89,10 +78,9 @@ public class Employee {
                     String department,
                     Employee supervisor,
                     boolean isSupervisor,
-                    String gender,
                     String employeeNumber) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+
+        this.fullName = fullName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.jobGrade = jobGrade;
@@ -101,13 +89,17 @@ public class Employee {
         this.isSupervisor = isSupervisor;
         this.department = department;
         this.supervisor = supervisor;
-        this.gender = gender;
+
         this.employeeNumber = employeeNumber;
     }
 
+
+    public  Employee(String employeeNumber){
+
+        this.employeeNumber = employeeNumber;
+    }
     public Employee(
-            String firstName,
-            String lastName,
+            String fullName,
             String email,
             String phoneNumber,
             String jobGrade,
@@ -115,10 +107,10 @@ public class Employee {
             String systemRole,
             String department,
             boolean isSupervisor,
-            String gender,
+
             String employeeNumber) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.fullName = fullName;
+
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.jobGrade = jobGrade;
@@ -127,28 +119,12 @@ public class Employee {
         this.isSupervisor = isSupervisor;
         this.department = department;
 
-        this.gender = gender;
         this.employeeNumber = employeeNumber;
     }
 
 
 
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 
     public String getEmail() {
         return email;
@@ -168,13 +144,7 @@ public class Employee {
         this.department = department;
     }
 
-    public String getGender() {
-        return gender;
-    }
 
-    public void setGender(String gender) {
-        this.gender = gender;
-    }
 
     @JsonManagedReference(value = "subordinates")
     public Collection<Employee> getSubordinates() {
@@ -214,21 +184,7 @@ public class Employee {
         this.subordinates = subordinates;
     }
 
-    public String getIdNumber() {
-        return idNumber;
-    }
 
-    public void setIdNumber(String idNumber) {
-        this.idNumber = idNumber;
-    }
-
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
 
     public String getPosition() {
         return position;
@@ -265,23 +221,26 @@ public class Employee {
     }
 
     public String getFullName() {
-        return this.lastName+" "+ this.firstName;
+        return fullName;
     }
 
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
 
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "employeeNumber='" + employeeNumber + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", isSupervisor=" + isSupervisor +
-                ", jobGrade='" + jobGrade + '\'' +
-                ", department='" + department + '\'' +
-                ", systemRole='" + systemRole + '\'' +
-                ", subordinates=" + subordinates +
-                '}';
+    public String getSupervisorNumber() {
+        return supervisorNumber;
+    }
+
+    public void setSupervisorNumber(String supervisorNumber) {
+        this.supervisorNumber = supervisorNumber;
+    }
+
+    public int getJobGradeStep() {
+        return jobGradeStep;
+    }
+
+    public void setJobGradeStep(int jobGradeStep) {
+        this.jobGradeStep = jobGradeStep;
     }
 }

@@ -1,6 +1,5 @@
 package com.tmgreyhat.api.TemplateControllers.objectiveController;
 
-import com.tmgreyhat.api.objective.EmployeeReviewEntry;
 import com.tmgreyhat.api.User.LoggedInUser;
 import com.tmgreyhat.api.User.User;
 import com.tmgreyhat.api.User.UserService;
@@ -20,10 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -54,7 +50,7 @@ public class ObjectiveController {
         this.objectiveCommentService = objectiveCommentService;
     }
 
-    @PostMapping("/set-objective")
+    @GetMapping("/set-objective")
     public  String setObjective(EvaluationPeriod evaluationPeriod, Model model) {
        // return "Objective set to: " + objective;
 
@@ -75,37 +71,7 @@ public class ObjectiveController {
     }
 
 
-    @PostMapping("/add-objective")
-    public String addObjective(Objective objective, Model model){
 
-
-        logger.info("Adding Objective: " + objective);
-
-        LoggedInUser loggedInUser = getLoggedInUser();
-        User systemUser = userService.getUserByUserName(loggedInUser.getUsername());
-
-        //current LocalDateTime
-        LocalDateTime now = LocalDateTime.now();
-        objective.setSetOn(now.toLocalDate());
-
-        //set the employee number of the currently logged user
-        objective.setSetBy(systemUser.getEmployeeNumber());
-        objectiveService.createObjective(objective);
-        Employee employee = employeeService.getOneEmployee(objective.getEmployeeNumber());
-        EvaluationPeriod evaluationPeriod =
-                evaluationPeriodService.getEvaluationPeriod(objective.getEvaluationPeriodId());
-        List<Objective> objectives =
-                objectiveService.getObjectivesByEvaluationId(evaluationPeriod.getId(), employee.getEmployeeNumber());
-        model.addAttribute("employee", employee);
-        model.addAttribute("evaluationPeriod", evaluationPeriod);
-        model.addAttribute("loggedInUser",loggedInUser);
-        model.addAttribute("objectives",objectives);
-
-
-        logger.info("Objectives for this employee: " + objectives);
-        return  "emp-objective-set";
-
-    }
 
 
     @GetMapping("/objectives-view")
@@ -127,7 +93,7 @@ public class ObjectiveController {
     }
 
 
-    @PostMapping("/get-objectives-for-period")
+    @GetMapping("/get-objectives-for-period")
     public  String objectivesView(Model model, EvaluationPeriod evaluationPeriod){
 
         EvaluationPeriod theEvaluationPeriod = evaluationPeriodService.getEvaluationPeriod(evaluationPeriod.getId());
@@ -167,7 +133,7 @@ public class ObjectiveController {
     @GetMapping("/objective-update/{id}")
     public String updateObjectivePage(Model model, @PathVariable(name = "id") Long id){
 
-        Objective objective= objectiveService.geObjectiveById(id);
+        Objective objective= objectiveService.getObjectiveById(id);
         LoggedInUser loggedInUser = getLoggedInUser();
 
         model.addAttribute("loggedInUser", loggedInUser);
@@ -180,7 +146,7 @@ public class ObjectiveController {
     @GetMapping("/objective-emp-view/{id}")
     public String empViewObjective(Model model, @PathVariable(name = "id") Long id){
 
-        Objective objective= objectiveService.geObjectiveById(id);
+        Objective objective= objectiveService.getObjectiveById(id);
         LoggedInUser loggedInUser = getLoggedInUser();
 
         List<ObjectiveComment> objectiveComments =

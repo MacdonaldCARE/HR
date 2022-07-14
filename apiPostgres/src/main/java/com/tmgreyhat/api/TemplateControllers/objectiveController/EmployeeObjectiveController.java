@@ -57,8 +57,13 @@ public class EmployeeObjectiveController {
     public String  updateObjective(Model model, ObjectiveComment objectiveComment){
 
         LoggedInUser loggedInUser = getLoggedInUser();
+
+        Objective objective = objectiveService.getObjectiveById(objectiveComment.getObjectiveId());
+        objective.setStatus("EMP-UPDATE");
+        objectiveService.updateObjective(objective);
         objectiveComment.setSubmittedOn(LocalDateTime.now().toLocalDate());
         objectiveCommentService.createObjectiveComment(objectiveComment);
+
 
         return  "redirect:/objective-emp-view/"+objectiveComment.getObjectiveId();
 

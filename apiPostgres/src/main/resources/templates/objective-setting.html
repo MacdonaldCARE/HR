@@ -63,11 +63,11 @@
                         <div class = "col-md-12">
 
                             <h2>Set Employee Objectives</h2>
-                            <form th:action="@{/set-objective}" th:object="${evaluationPeriod}" method="post">
+                            <form th:action="@{/set-objective}" th:object="${evaluationPeriod}" method="get">
                                 <div class="form-row">
                                     <div class="form-group col-md-12 col-sm-12 col-lg-4">
                                         <label for="vacancy_type">Select Employee:</label>
-                                        <select class="form-control" id="vacancy_type" th:field="*{employeeNumber}">
+                                        <select class="form-control" id="vacancy_type" th:field="*{employeeNumber}" required>
 
                                             <option th:each="employee : ${employees}" th:value="${employee.employeeNumber}" th:text="${employee.fullName}"></option>
 

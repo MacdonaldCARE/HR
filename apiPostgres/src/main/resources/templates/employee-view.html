@@ -68,13 +68,10 @@
 
                                 <div class="form-row">
                                     <div class="form-group col-md-3">
-                                        <label for="inputFirstname">First Name</label>
-                                        <input type="text" class="form-control" id="inputFirstname" placeholder="Kudakwashe" th:field="*{firstName}" th:value="${employee.firstName}" disabled="disabled">
+                                        <label for="inputFirstname">Full Name</label>
+                                        <input type="text" class="form-control" id="inputFirstname" placeholder="Kudakwashe" th:field="*{fullName}" th:value="${employee.fullName}" disabled="disabled">
                                     </div>
-                                    <div class="form-group col-md-3">
-                                        <label for="inputLastName">Last Name</label>
-                                        <input type="text" class="form-control" id="inputLastName" placeholder="Sengweni" th:field="*{lastName}" th:value="${employee.lastName}" disabled="disabled">
-                                    </div>
+
                                     <div class="form-group col-md-3">
                                         <label for="phoneNumber">Phone Number</label>
                                         <input type="text" class="form-control" id="phoneNumber" placeholder="Phone Number" th:field="*{phoneNumber}" th:value="${employee.phoneNumber}" disabled="disabled">
@@ -87,29 +84,6 @@
                                 </div>
 
 
-
-
-                                <div class="form-row">
-                                    <div class="form-group col-md-4">
-                                        <label for="dateOfBirth">Date of Birth</label>
-                                        <input type="date" class="form-control" id="dateOfBirth" placeholder="Phone Number"  th:value="${employee.dateOfBirth}" disabled="disabled">
-                                    </div>
-
-                                    <div class="form-group col-md-4">
-                                        <label for="idNumber">Id Number</label>
-
-                                        <input type="text" class="form-control" id="idNumber" placeholder="63-1775874J27"  th:value="${employee.idNumber}" disabled="disabled">
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="gender">Gender</label>
-
-                                        <input type="text" class="form-control" id="gender" placeholder="NONE"  th:value="${employee.gender}" disabled="disabled">
-                                    </div>
-
-
-
-
-                                </div>
 
                                 <div class="form-row">
 
@@ -130,7 +104,7 @@
                                     <div class="form-group col-md-3">
                                         <label for="supervisor">Supervisor </label>
 
-                                        <input type="text" class="form-control" id="supervisor" placeholder="NONE"  th:value="${employee?.supervisor?.lastName}" disabled="disabled">
+                                        <input type="text" class="form-control" id="supervisor" placeholder="NONE"  th:value="${employee?.supervisor?.fullName}" disabled="disabled">
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label for="isSupervisor">Is Employee A Supervisor ?</label>

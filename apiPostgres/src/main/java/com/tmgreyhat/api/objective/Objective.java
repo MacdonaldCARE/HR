@@ -23,6 +23,8 @@ public class Objective {
     private String employeeNumber;
     private String objectiveTitle;
     private String indicator;
+
+    private String status;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate startDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
