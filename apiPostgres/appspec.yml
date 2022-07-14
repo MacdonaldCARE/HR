@@ -2,4 +2,20 @@ version: 0.0
 os: linux
 files:
   -sources: /
-   destination: /
+   destination: /home/ubuntu/artifacts
+hooks:
+  ApplicationStop:
+    -location: scripts/stop.sh
+     timeout: 300
+     runas: root
+
+  BeforeInstall:
+    -location: scripts/before_install.sh
+      timeout: 300
+      runas: root
+  ApplicationStart:
+    -location: scripts/app_start.sh
+      timeout: 300
+      runas: root
+
+
