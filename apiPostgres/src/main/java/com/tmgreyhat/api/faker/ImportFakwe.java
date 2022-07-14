@@ -33,7 +33,7 @@ public class ImportFakwe {
 
 
 
-            List<List<String>> contactRecords = new ArrayList<>();
+    /*        List<List<String>> contactRecords = new ArrayList<>();
             try (BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\tmbizvo\\Downloads\\Documents\\care_job_grades.csv"))) {
                 String line;
                 while ((line = br.readLine()) != null) {
@@ -43,7 +43,7 @@ public class ImportFakwe {
                 }
             } catch (IOException e) {
                 throw new RuntimeException(e);
-            }
+            }*/
 
 
 /*            for(List<String> employeeRecord: contactRecords){
