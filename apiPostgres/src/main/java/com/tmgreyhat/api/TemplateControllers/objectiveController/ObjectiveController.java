@@ -50,25 +50,7 @@ public class ObjectiveController {
         this.objectiveCommentService = objectiveCommentService;
     }
 
-    @GetMapping("/set-objective")
-    public  String setObjective(EvaluationPeriod evaluationPeriod, Model model) {
-       // return "Objective set to: " + objective;
 
-        String employeeNumber = evaluationPeriod.getEmployeeNumber();
-        Employee employee = employeeService.getOneEmployee(employeeNumber);
-        EvaluationPeriod savedEvaluationPeriod =
-                evaluationPeriodService.addEvaluationPeriod(evaluationPeriod);
-        model.addAttribute("employee", employee);
-        model.addAttribute("evaluationPeriod", savedEvaluationPeriod);
-
-        // get objectives for this employee using the evaluationId
-        List<Objective> objectives =
-                objectiveService.getObjectivesByEvaluationId(savedEvaluationPeriod.getId(), employeeNumber);
-        model.addAttribute("loggedInUser",getLoggedInUser());
-        model.addAttribute("objectives",objectives);
-        model.addAttribute("objective", new Objective());
-        return  "emp-objective-set";
-    }
 
 
 
@@ -119,7 +101,8 @@ public class ObjectiveController {
 
         List<Employee> surbodinates =  employeeService.getSubordinates(employeeNumber);
 
-        logger.info("subordinates for "+ employeeNumber +" Are "+surbodinates);
+        logger.info("subordinates for "+ employeeNumber +" Are ");
+        surbodinates.forEach(s -> logger.info(s.getFullName()));
 
         model.addAttribute("loggedInUser",getLoggedInUser());
         model.addAttribute("employees",surbodinates);

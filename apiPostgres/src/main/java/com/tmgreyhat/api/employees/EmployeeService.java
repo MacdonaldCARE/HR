@@ -7,10 +7,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 @Service
 public class EmployeeService {
 
+
+    Logger logger = Logger.getLogger(EmployeeService.class.getName());
     private final  EmployeeRepository employeeRepository;
     private final UserService userService;
 
@@ -68,18 +71,18 @@ public class EmployeeService {
         boolean employeeEmailTaken = employeeRepository
                 .findByEmail(employee.getEmail()).isPresent();
 
+        employee.setFullName(employee.getLastName()+" "+ employee.getFirstName());
+        logger.info(" Employee Name: "+employee.getFullName());
         if(employeeEmailTaken){
 
             throw  new IllegalStateException("Employee with email "+employee.getEmail()+" Already exist");
         }
 
-      //  String userName = employee.getFirstName().toLowerCase()+"."+employee.getLastName().toLowerCase();
 
-        String names[] = employee.getFullName().split(" ");
-        String userName = names[0].toLowerCase()+"."+names[1].toLowerCase();
+        String userName = employee.getFirstName().toLowerCase()+"."+employee.getLastName().toLowerCase();
         if(userService.checkIfUserExists(userName)){
 
-            throw  new IllegalStateException("Employee with username "+userName+" Already exist");
+            throw  new IllegalStateException("Employee with username "+userName+" Already exist.");
         }
 
 

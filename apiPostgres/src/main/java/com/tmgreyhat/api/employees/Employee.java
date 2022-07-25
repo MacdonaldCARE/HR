@@ -28,6 +28,11 @@ public class Employee {
     private String employeeNumber;
 
     @Transient
+    private String firstName;
+    @Transient
+    private  String lastName;
+
+    @Transient
     private String supervisorNumber;
     @Column
     private  String fullName;
@@ -69,7 +74,8 @@ public class Employee {
 
     }
     public Employee(
-                    String fullName,
+                    String firstName,
+                    String lastName,
                     String email,
                     String phoneNumber,
                     String jobGrade,
@@ -79,8 +85,8 @@ public class Employee {
                     Employee supervisor,
                     boolean isSupervisor,
                     String employeeNumber) {
-
-        this.fullName = fullName;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.jobGrade = jobGrade;
@@ -89,9 +95,10 @@ public class Employee {
         this.isSupervisor = isSupervisor;
         this.department = department;
         this.supervisor = supervisor;
-
         this.employeeNumber = employeeNumber;
     }
+
+
 
 
     public  Employee(String employeeNumber){
@@ -107,7 +114,6 @@ public class Employee {
             String systemRole,
             String department,
             boolean isSupervisor,
-
             String employeeNumber) {
         this.fullName = fullName;
 
@@ -144,7 +150,21 @@ public class Employee {
         this.department = department;
     }
 
+    public String getFirstName() {
+        return firstName;
+    }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
     @JsonManagedReference(value = "subordinates")
     public Collection<Employee> getSubordinates() {

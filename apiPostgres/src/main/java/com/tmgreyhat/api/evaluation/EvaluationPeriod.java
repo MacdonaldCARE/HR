@@ -25,5 +25,11 @@ public class EvaluationPeriod {
         this.id = id;
     }
 
+    public EvaluationPeriod(String employeeNumber){
+
+        this.employeeNumber = employeeNumber;
+
+    }
+
 
 }

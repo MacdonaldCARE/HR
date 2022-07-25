@@ -60,6 +60,26 @@ public class SupervisorObjectiveController {
     }
 
 
+    @GetMapping("/set-objective")
+    public  String setObjective(EvaluationPeriod evaluationPeriod, Model model) {
+        // return "Objective set to: " + objective;
+
+        String employeeNumber = evaluationPeriod.getEmployeeNumber();
+        Employee employee = employeeService.getOneEmployee(employeeNumber);
+        EvaluationPeriod savedEvaluationPeriod =
+                evaluationPeriodService.addEvaluationPeriod(evaluationPeriod);
+        model.addAttribute("employee", employee);
+        model.addAttribute("evaluationPeriod", savedEvaluationPeriod);
+
+        // get objectives for this employee using the evaluationId
+        List<Objective> objectives =
+                objectiveService.getObjectivesByEvaluationId(savedEvaluationPeriod.getId(), employeeNumber);
+        model.addAttribute("loggedInUser",getLoggedInUser());
+        model.addAttribute("objectives",objectives);
+        model.addAttribute("objective", new Objective());
+        return  "emp-objective-set";
+    }
+
     @PostMapping("/add-objective")
     public String addObjective(Objective objective, Model model){
 
@@ -87,11 +107,8 @@ public class SupervisorObjectiveController {
         model.addAttribute("evaluationPeriod", evaluationPeriod);
         model.addAttribute("loggedInUser",loggedInUser);
         model.addAttribute("objectives",objectives);
-
-
         logger.info("Objectives for this employee: " + objectives);
 
-        //http://localhost:58913/set-objective?employeeNumber=1949&year=2022&quarter=JAN-JUNE
 
         return  "redirect:/set-objective?employeeNumber="+
                 employee.getEmployeeNumber()+

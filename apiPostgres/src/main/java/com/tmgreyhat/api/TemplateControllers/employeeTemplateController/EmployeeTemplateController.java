@@ -60,28 +60,7 @@ public class EmployeeTemplateController {
         System.out.println("SATRTING THE SAVE");
         System.out.println(employee);
         System.out.println("##############################################################");
-       employeeService.addOneEmployee(employee);
-
-
-
-
-       //extract first character of the first name
-        //String userName = employee.getFirstName().toLowerCase() +"."+ employee.getLastName().toLowerCase();
-
-        String[] names = employee.getFullName().split("");
-        String userName = names[0]+"."+names[1];
-        User new_system_user = new User(
-                userName,
-                userName,
-                employee.getEmployeeNumber(),
-                true,
-                employee.getSystemRole()
-        );
-
-        // TODO : check the user name is unique and return error if not
-
-        userService.registerNewUser(new_system_user);
-
+        employeeService.addOneEmployee(employee);
         return  "redirect:/employees";
     }
 

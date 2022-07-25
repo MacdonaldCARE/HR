@@ -47,6 +47,8 @@
         <div id="collapseFive" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="/objective-setting">Set Objectives <i class="fas fa-fw  fa-arrow-right"></i> </a>
+                <a class="collapse-item" href="/probation-setting">Set Probation tasks <i class="fas fa-fw  fa-arrow-right"></i> </a>
+                <a class="collapse-item" href="/probation-setting">Set Probation tasks <i class="fas fa-fw  fa-arrow-right"></i> </a>
                 <a class="collapse-item" href="/objectives-view">Update Objectives <i class="fas fa-fw  fa-arrow-right"></i> </a>
                 <a class="collapse-item" href="/self-employee-review">Self Review <i class="fas fa-fw  fa-arrow-right"></i> </a>
 
@@ -55,7 +57,37 @@
 
             <!--  <div th:if="${loggedInUser.role=='ROLE_HRMANAGER'}">SOME TEXT FOR HR MANAGER</div>-->
         </div>
+        <hr class="sidebar-divider">
 
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSix"
+           aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-bullseye"></i>
+            <span>Probation</span>
+        </a>
+        <div id="collapseSix" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="/probation-setting"> Objectives Setting <i class="fas fa-fw  fa-arrow-right"></i> </a>
+                <a class="collapse-item" href="/probation-update"> Self Update <i class="fas fa-fw  fa-arrow-right"></i> </a>
+                <a class="collapse-item" href="/probation-supervisor-review"> Supervisor Review <i class="fas fa-fw  fa-arrow-right"></i> </a>
+            </div>
+
+        </div>
+
+        <hr class="sidebar-divider">
+
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSeven"
+           aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-bullseye"></i>
+            <span>Performance Improvement</span>
+        </a>
+        <div id="collapseSeven" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="/initialise-pip"> Create PIP  <i class="fas fa-fw  fa-arrow-right"></i> </a>
+                <a class="collapse-item" href="/update-pip">Update PIP <i class="fas fa-fw  fa-arrow-right"></i> </a>
+                <a class="collapse-item" href="/pip-supervisor-review">Review PIP <i class="fas fa-fw  fa-arrow-right"></i> </a>
+            </div>
+
+        </div>
 
     </li>
 
