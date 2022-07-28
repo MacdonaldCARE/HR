@@ -32,7 +32,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/appli**").hasAnyRole("ADMIN", "ACD", "CD", "ACD", "GEN", "HRM")
                 .antMatchers("/").hasAnyRole("ADMIN", "ACD", "CD", "ACD", "GEN", "HRM")
                /* .antMatchers("/").permitAll()*/
-                .and().formLogin().defaultSuccessUrl("/");
+
+                .and().formLogin()
+                .loginPage("/login").permitAll()
+                .defaultSuccessUrl("/");
        // ROLE_CD, ROLE_ACD, ROLE_BH, ROLE_HRM, ROLE_ADMIN, ROLE_GEN
 
     }
