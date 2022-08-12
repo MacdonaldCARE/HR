@@ -8,7 +8,7 @@
 <body>
 
 <!-- Sidebar -->
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"  th:fragment="hr_side_bar" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"  th:fragment="admin_side_bar" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -18,7 +18,7 @@
         <div class="sidebar-brand-text mx-3">Care Zimbabwe <sup></sup></div>
     </a>
 
-    <!-- Divider -->
+    <!-- Divider -->+
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
@@ -39,12 +39,12 @@
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
            aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-users"></i>
-            <span>Employees</span>
+            <span>Users</span>
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Options:</h6>
-                <a class="collapse-item" href="/employees">View All Employees  <i class="fas fa-fw fa-users"></i></a>
+                <a class="collapse-item" href="/system-user-list">View All Users  <i class="fas fa-fw fa-users"></i></a>
                 <a class="collapse-item" href="/employees-add">Add new  <i class="fas fa-fw fa-user-plus"></i> </a>
             </div>
 
@@ -106,30 +106,15 @@
         <div id="collapseFive" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="/objective-setting">Set Objectives <i class="fas fa-fw  fa-arrow-right"></i> </a>
-
                 <a class="collapse-item" href="/objectives-view">Update Objectives <i class="fas fa-fw  fa-arrow-right"></i> </a>
                 <a class="collapse-item" href="/self-employee-review">Self Review <i class="fas fa-fw  fa-arrow-right"></i> </a>
                 <a class="collapse-item" href="/hr-employee-review">HR Review <i class="fas fa-fw  fa-arrow-right"></i> </a>
                 <a class="collapse-item" href="/supervisor-review-init">Supervisor Review  <i class="fas fa-fw  fa-arrow-right"></i> </a>
             </div>
-        </div>
-        <hr class="sidebar-divider">
-
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSix"
-           aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-bullseye"></i>
-            <span>Probation</span>
-        </a>
-        <div id="collapseSix" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="/probation-setting"> Objectives Setting <i class="fas fa-fw  fa-arrow-right"></i> </a>
-                <a class="collapse-item" href="/probation-update"> Self Update <i class="fas fa-fw  fa-arrow-right"></i> </a>
-                <a class="collapse-item" href="/probation-supervisor-review"> Supervisor Review <i class="fas fa-fw  fa-arrow-right"></i> </a>
-                <a class="collapse-item" href="/probation-hr-review"> HR Review <i class="fas fa-fw  fa-arrow-right"></i> </a>
-            </div>
 
             <!--  <div th:if="${loggedInUser.role=='ROLE_HRMANAGER'}">SOME TEXT FOR HR MANAGER</div>-->
         </div>
+
 
     </li>
 

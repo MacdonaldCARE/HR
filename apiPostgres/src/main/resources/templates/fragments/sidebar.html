@@ -30,6 +30,10 @@
     <div th:if="${loggedInUser.role=='ROLE_CD'}">
          <li th:replace="fragments/cd_side_bar :: cd_side_bar"></li>
     </div>
+
+    <div th:if="${loggedInUser.role=='ROLE_ADMIN'}">
+         <li th:replace="fragments/admin_side_bar :: admin_side_bar"></li>
+    </div>
     <!-- Nav Item - Utilities Collapse Menu -->
 
 
