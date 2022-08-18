@@ -95,6 +95,7 @@ public class SupervisorProbationController {
                probationObjectiveService.getProbationObjectivesForEmployee(probationPeriod.getEmployeeNumber());
         Employee employee = employeeService.getOneEmployee(probationPeriod.getEmployeeNumber());
         if(objectives.isEmpty()){
+            model.addAttribute("loggedInUser",getLoggedInUser());
             model.addAttribute("errorMsg", "No Probation tasks found for  "+
                     employee.getFullName());
             return "error-page";
@@ -128,6 +129,7 @@ public class SupervisorProbationController {
 
 
         });
+
         model.addAttribute("loggedInUser",getLoggedInUser());
         model.addAttribute("employee",employee);
         model.addAttribute("objectives",employeeReviewEntryList);
@@ -225,6 +227,15 @@ public class SupervisorProbationController {
         model.addAttribute("probationObjectiveComment",probationObjectiveComment);
         model.addAttribute("employee",employee);
         return "redirect:/supervisor-view-probation-tasks?employeeNumber="+employee.getEmployeeNumber();
+    }
+
+    @GetMapping("/pip-supervisor-review")
+    public String supervisorReview(Model model){
+
+
+
+        model.addAttribute("loggedInUser",getLoggedInUser());
+        return "supervisor-probation-tasks-view";
     }
 
 }

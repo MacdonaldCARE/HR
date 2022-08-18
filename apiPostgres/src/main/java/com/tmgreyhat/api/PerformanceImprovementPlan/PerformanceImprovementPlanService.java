@@ -2,6 +2,7 @@ package com.tmgreyhat.api.PerformanceImprovementPlan;
 
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -28,7 +29,11 @@ public class PerformanceImprovementPlanService {
 
 
 
+    public List<PerformanceImprovementPlan> getAllPerformanceImprovementPlansForEmployee(String employeeNumber){
+        return repository.findAllByEmployeeNumber(employeeNumber);
 
+
+    }
     public Optional<PerformanceImprovementPlan>
         getEmployeeImprovementPlan(String employeeNumber){
         return  repository.findByEmployeeNumberAndStatusIsOpen(employeeNumber);

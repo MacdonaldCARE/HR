@@ -27,4 +27,8 @@ public class PerformanceImprovementPlan {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate endDate;
 
+
+    public  PerformanceImprovementPlan (Long id){
+        this.id = id;
+    }
 }

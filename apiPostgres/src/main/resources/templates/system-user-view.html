@@ -63,53 +63,87 @@
                     <div class="card-body">
                         <div class = "col-md-12">
 
-                            <h2>View Employee Record</h2>
+                            <h2>View Employee Details</h2>
                             <form th:action="@{/employees}" th:object="${employee}" method="post">
 
                                 <div class="form-row">
                                     <div class="form-group col-md-3">
                                         <label for="inputFirstname">Full Name</label>
-                                        <input type="text" class="form-control" id="inputFirstname" placeholder="Kudakwashe" th:field="*{fullName}" th:value="${employee.fullName}" disabled="disabled">
+                                        <input type="text"
+                                               class="form-control"
+                                               id="inputFirstname"
+                                               placeholder="Kudakwashe"
+                                               th:field="*{fullName}"
+                                               th:value="${employee.fullName}"
+                                               disabled="disabled">
                                     </div>
 
                                     <div class="form-group col-md-3">
                                         <label for="phoneNumber">Phone Number</label>
-                                        <input type="text" class="form-control" id="phoneNumber" placeholder="Phone Number" th:field="*{phoneNumber}" th:value="${employee.phoneNumber}" disabled="disabled">
+                                        <input type="text"
+                                               class="form-control"
+                                               id="phoneNumber"
+                                               placeholder="Phone Number"
+                                               th:field="*{phoneNumber}"
+                                               th:value="${employee.phoneNumber}"
+                                               disabled="disabled">
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label for="emailAddress">Employee Email Address</label>
-                                        <input type="email" class="form-control" id="emailAddress" placeholder="Email Address" th:field="*{email}" th:value="${employee.email}" disabled="disabled">
+                                        <input type="email"
+                                               class="form-control"
+                                               id="emailAddress"
+                                               placeholder="Email Address"
+                                               th:field="*{email}"
+                                               th:value="${employee.email}"
+                                               disabled="disabled">
                                     </div>
 
                                 </div>
-
-
 
                                 <div class="form-row">
 
                                     <div class="form-group col-md-3">
                                         <label for="department">Department</label>
 
-
-
-                                            <input type="text" class="form-control" id="department" placeholder="NONE"  th:value="${employee.department}" disabled="disabled">
+                                            <input type="text"
+                                                   class="form-control"
+                                                   id="department"
+                                                   placeholder="NONE"
+                                                   th:value="${employee.department}"
+                                                   disabled="disabled">
 
                                     </div>
 
                                     <div class="form-group col-md-3">
                                         <label for="jobTitle">Job Title </label>
 
-                                        <input type="text" class="form-control" id="jobTitle" placeholder="NONE"  th:value="${employee.position}" disabled="disabled">
+                                        <input type="text"
+                                               class="form-control"
+                                               id="jobTitle"
+                                               placeholder="NONE"
+                                               th:value="${employee.position}"
+                                               disabled="disabled">
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label for="supervisor">Supervisor </label>
 
-                                        <input type="text" class="form-control" id="supervisor" placeholder="NONE"  th:value="${employee?.supervisor?.fullName}" disabled="disabled">
+                                        <input type="text"
+                                               class="form-control"
+                                               id="supervisor"
+                                               placeholder="NONE"
+                                               th:value="${employee?.supervisor?.fullName}"
+                                               disabled="disabled">
                                     </div>
                                     <div class="form-group col-md-3">
                                         <label for="isSupervisor">Is Employee A Supervisor ?</label>
 
-                                        <input type="text" class="form-control" id="isSupervisor" placeholder="NONE"  th:value="${employee.isSupervisor}" disabled="disabled">
+                                        <input type="text"
+                                               class="form-control"
+                                               id="isSupervisor"
+                                               placeholder="NONE"
+                                               th:value="${employee.isSupervisor}"
+                                               disabled="disabled">
                                     </div>
 
                                 </div>

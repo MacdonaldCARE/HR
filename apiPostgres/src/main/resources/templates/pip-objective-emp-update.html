@@ -64,11 +64,16 @@
                         <div class = "col-md-12">
 
                             <h5>Update Objective  </h5>
-                            <h6>Objective<i class="fas fa-fw fa-bullseye text-primary"></i><span class="text-primary" th:text="${objective.objectiveTitle}"></span></h6>
-                            <h6>Indicator<i class="fas fa-fw fa-bullseye text-primary"></i><span class="text-primary" th:text="${objective.indicator}"></span></h6>
-                            <form th:action="@{/probation-emp-add-comment}" th:object="${probationObjectiveComment}" method="post">
+                            <h6>Target Area<i class="fas fa-fw fa-bullseye text-primary"></i><span class="text-primary" th:text="${objective.targetArea}"></span></h6>
+                            <h6>Concern <i class="fas fa-fw fa-bullseye text-primary"></i><span class="text-primary" th:text="${objective.concern}"></span></h6>
+                            <h6>Expected Outcome<i class="fas fa-fw fa-bullseye text-primary"></i><span class="text-primary" th:text="${objective.expectedOutcome}"></span></h6>
+                            <form th:action="@{/pip-emp-add-comment}" th:object="${pipObjectiveComment}" method="post">
 
-                                <input type="hidden" th:value="${objective.id}" name="pipObjectiveId">
+
+
+                                <input type="hidden"
+                                       th:value="${objective.id}"
+                                       name="pipObjectiveId">
                                 <div class="form-row">
                                     <div class="form-group col-md-12 col-sm-12 col-lg-4">
                                         <label for="employeeRating">Employee Self Rating:</label>
@@ -76,7 +81,7 @@
                                                id="employeeRating"
                                                step="0.5" max="5" min="1"
                                                th:field="*{employeeRating}"
-                                               th:value="${probationObjectiveComment.employeeRating}"
+                                               th:value="${pipObjectiveComment.employeeRating}"
                                                class="form-control">
                                     </div>
                                     <div class="form-group col-md-12 col-sm-12 col-lg-4">
@@ -84,7 +89,7 @@
                                         <label for="indicator">Employee Comment </label>
                                         <textarea id="indicator"
                                                   th:field="*{employeeComment}"
-                                                  th:value="${probationObjectiveComment.employeeComment}"
+                                                  th:value="${pipObjectiveComment.employeeComment}"
                                                   class="form-control">
                                         </textarea>
 

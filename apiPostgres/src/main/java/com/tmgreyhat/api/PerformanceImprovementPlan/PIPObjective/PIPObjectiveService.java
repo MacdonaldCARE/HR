@@ -23,4 +23,15 @@ public class PIPObjectiveService {
 
         return  repository.save(pipObjective);
     }
+
+    public List<PIPObjective> getAllPIPObjectivesForPlan(Long id) {
+
+
+        return  repository.findByPipId(id);
+    }
+
+    public PIPObjective getObjectiveById(Long id) {
+
+        return repository.findById(id).orElse(null);
+    }
 }

@@ -13,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -88,6 +90,7 @@ public class SupervisorPerformancePlanController {
 
         Employee employee =
                 employeeService.getOneEmployee(plan.getEmployeeNumber());
+        pipObjective.setCreatedOn(LocalDate.now());
         pipObjectiveService.addPIPObjective(pipObjective);
         List<PIPObjective> pipObjectiveList =
                 pipObjectiveService.getObjectivesByPIPId(pipObjective.getPipId());
